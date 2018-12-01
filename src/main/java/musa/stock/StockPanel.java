@@ -54,7 +54,7 @@ public class StockPanel extends AbstractPanel implements TitleProvider {
 		availableAmountSlider = makeSlider();
 		add(availableAmountSlider);
 
-		saveButton = new JButton("Speichern");
+		saveButton = new JButton("Save");
 		add(saveButton);
 	}
 
