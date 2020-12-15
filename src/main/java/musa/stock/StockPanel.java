@@ -37,12 +37,12 @@ public class StockPanel extends AbstractPanel implements TitleProvider {
 	private boolean direction1, direction2;
 
 	public StockPanel(ClientContext clientContext) {
-		StockContext fooBarContext = (StockContext) clientContext;
-		ledCount1 = fooBarContext.getRingLedCount(0);
-		ledCount2 = fooBarContext.getRingLedCount(1);
+		StockContext ctx = (StockContext) clientContext;
+		ledCount1 = ctx.getRingLedCount(0);
+		ledCount2 = ctx.getRingLedCount(1);
 
-		direction1 = fooBarContext.getDirectionForRing(0);
-		direction2 = fooBarContext.getDirectionForRing(1);
+		direction1 = ctx.getDirectionForRing(0);
+		direction2 = ctx.getDirectionForRing(1);
 
 		setLayout(new BoxLayout(this, PAGE_AXIS));
 

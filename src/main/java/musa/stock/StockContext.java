@@ -2,7 +2,7 @@ package musa.stock;
 
 import musa.fwk.ClientContext;
 
-public class StockContext implements ClientContext {
+public interface StockContext extends ClientContext {
 
 	/**
 	 * Returns the amount of leds of the ring.
@@ -10,9 +10,7 @@ public class StockContext implements ClientContext {
 	 * @param ring number of ring
 	 * @return amount of leds
 	 */
-	public int getRingLedCount(int ring) {
-		return 16;
-	}
+	int getRingLedCount(int ring);
 
 	/**
 	 * When value on ring should be shown clockwise <code>true</code> is returned,
@@ -21,8 +19,21 @@ public class StockContext implements ClientContext {
 	 * @param ring number of ring
 	 * @return <code>true</code> for clockwise
 	 */
-	public boolean getDirectionForRing(int ring) {
-		return true;
-	}
+	boolean getDirectionForRing(int ring);
+
+	/**
+	 * Returns the hostname of the mqtt broker.
+	 * 
+	 * @return hostname of the mqtt broker.
+	 */
+	String getMqttHost();
+	
+	/**
+	 * Returns the port of the mqtt broker.
+	 * 
+	 * @return port of the mqtt broker.
+	 */
+	int getMqttHPortost();
 
 }
+

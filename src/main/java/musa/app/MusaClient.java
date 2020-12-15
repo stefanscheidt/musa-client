@@ -40,11 +40,35 @@ public class MusaClient extends JPanel {
 	private JTabbedPane tabbedPane() {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		for (int i = 0; i < 32; i++) {
-			JComponent panel = i == 3 ? new StockPanel(new StockContext()) : makeTextPanel();
+			JComponent panel = i == 3 ? new StockPanel(stockContext()) : makeTextPanel();
 			String label = panel instanceof TitleProvider ? ((TitleProvider) panel).getTitle() : label();
 			tabbedPane.addTab(label, panel);
 		}
 		return tabbedPane;
+	}
+
+	private StockContext stockContext() {
+		return new StockContext() {
+
+			@Override
+			public int getRingLedCount(int ring) {
+				return 16;
+			}
+
+			@Override
+			public boolean getDirectionForRing(int ring) {
+				return ring == 0 ? false : true;
+			}
+
+			@Override
+			public String getMqttHost() {
+				return "localhost";
+			}
+
+			@Override
+			public int getMqttHPortost() {
+				return 1833;
+			}};
 	}
 
 	private String label() {
