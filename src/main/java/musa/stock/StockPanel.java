@@ -1,24 +1,17 @@
 package musa.stock;
 
+import musa.fwk.AbstractPanel;
+import musa.fwk.ClientContext;
+import musa.fwk.TitleProvider;
+
+import javax.swing.*;
+import java.awt.*;
+
 import static java.awt.Font.ITALIC;
 import static javax.swing.BorderFactory.createEmptyBorder;
 import static javax.swing.BoxLayout.PAGE_AXIS;
 import static javax.swing.SwingConstants.CENTER;
 import static javax.swing.SwingConstants.HORIZONTAL;
-
-import java.awt.Font;
-import java.io.IOException;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JSlider;
-
-import musa.fwk.AbstractPanel;
-import musa.fwk.ClientContext;
-import musa.fwk.TitleProvider;
-import rgbledring.mqtt.MqttLedRing;
-import rgbledring.mqtt.MqttSender;
 
 /**
  * MFW generated class. Do not change anything except dedicated user sections
@@ -38,8 +31,6 @@ public class StockPanel extends AbstractPanel implements TitleProvider {
 	private int profibility, availableAmount;
 	private int ledCount1, ledCount2;
 	private boolean direction1, direction2;
-
-	private MqttLedRing mqttLedRing;
 
 	public StockPanel(ClientContext clientContext) {
 		StockContext ctx = (StockContext) clientContext;
@@ -62,11 +53,6 @@ public class StockPanel extends AbstractPanel implements TitleProvider {
 		saveButton = new JButton("Save");
 		add(saveButton);
 
-		try {
-			mqttLedRing = new MqttLedRing(ledCount1, new MqttSender("test.mosquitto.org", 1883));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	/***
@@ -81,7 +67,6 @@ public class StockPanel extends AbstractPanel implements TitleProvider {
 		}
 		if (source == profibilitySlider) {
 			this.profibility = ((JSlider) source).getValue();
-			mqttLedRing.setLevel(profibility);
 		}
 		if (source == availableAmountSlider) {
 			this.availableAmount = ((JSlider) source).getValue();
