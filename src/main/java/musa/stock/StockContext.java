@@ -33,7 +33,7 @@ public interface StockContext extends ClientContext {
 	 * 
 	 * @return port of the mqtt broker.
 	 */
-	int getMqttHPortost();
+	int getMqttPort();
 
 }
 

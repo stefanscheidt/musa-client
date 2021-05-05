@@ -1,27 +1,19 @@
 package musa.app;
 
-import static java.awt.BorderLayout.CENTER;
-import static java.lang.Boolean.FALSE;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import musa.fwk.TitleProvider;
+import musa.stock.StockContext;
+import musa.stock.StockPanel;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-
-import musa.fwk.TitleProvider;
-import musa.stock.StockContext;
-import musa.stock.StockPanel;
+import static java.awt.BorderLayout.CENTER;
+import static java.lang.Boolean.FALSE;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class MusaClient extends JPanel {
 
@@ -57,7 +49,7 @@ public class MusaClient extends JPanel {
 
 			@Override
 			public boolean getDirectionForRing(int ring) {
-				return ring == 0 ? false : true;
+				return ring != 0;
 			}
 
 			@Override
@@ -66,7 +58,7 @@ public class MusaClient extends JPanel {
 			}
 
 			@Override
-			public int getMqttHPortost() {
+			public int getMqttPort() {
 				return 1833;
 			}};
 	}
@@ -115,11 +107,9 @@ public class MusaClient extends JPanel {
 	}
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				UIManager.put("swing.boldMetal", FALSE);
-				createAndShowGUI();
-			}
+		SwingUtilities.invokeLater(() -> {
+			UIManager.put("swing.boldMetal", FALSE);
+			createAndShowGUI();
 		});
 	}
 }
