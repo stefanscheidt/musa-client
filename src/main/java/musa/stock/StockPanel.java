@@ -71,6 +71,8 @@ public class StockPanel extends AbstractPanel implements TitleProvider {
 		if (source == availableAmountSlider) {
 			this.availableAmount = ((JSlider) source).getValue();
 		}
+
+
 		// ########## GENERATED - USER SECTION END
 	}
 
